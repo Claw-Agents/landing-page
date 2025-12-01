@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKQDD0ESW0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SKQDD0ESW0');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -856,8 +865,8 @@
                 <div class="form-message" id="ctaFormMessage"></div>
             </form>
 
-            <a href="https://calendly.com/obfuscaite/demo" class="demo-link" target="_blank" rel="noopener">
-                📅 Book a demo for January 2025
+            <a href="https://calendly.com/oliviamcgoffin/strategy-chat" class="demo-link" target="_blank" rel="noopener">
+                📅 Book a strategy chat
             </a>
         </div>
     </section>
@@ -911,19 +920,14 @@
 
                 try {
                     // Replace with your actual endpoint (ConvertKit, Mailchimp, etc.)
-                    // Example for ConvertKit:
-                    // const response = await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
-                    //     method: 'POST',
-                    //     headers: { 'Content-Type': 'application/json' },
-                    //     body: JSON.stringify({
-                    //         api_key: 'YOUR_API_KEY',
-                    //         email: data.email,
-                    //         fields: {
-                    //             company: data.company,
-                    //             concern: data.concern
-                    //         }
-                    //     })
-                    // });
+                    // FormSpree:
+                    const response = await fetch('https://formspree.io/f/xgvgyvpy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: formData ? JSON.stringify(data) : null
+                    });
+
+                    if (!response.ok) throw new Error('Submission failed');
 
                     // For demo purposes, store in localStorage
                     const leads = JSON.parse(localStorage.getItem('obfuscaite_leads') || '[]');
@@ -961,17 +965,6 @@
         handleFormSubmit('heroForm', 'heroFormMessage');
         handleFormSubmit('ctaForm', 'ctaFormMessage');
 
-        // Google Analytics 4 (replace with your measurement ID)
-        // window.dataLayer = window.dataLayer || [];
-        // function gtag(){dataLayer.push(arguments);}
-        // gtag('js', new Date());
-        // gtag('config', 'G-XXXXXXXXXX');
     </script>
-
-    <!-- Google Analytics 4 - Uncomment and add your ID -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
-
-    <!-- Alternative: Plausible Analytics (privacy-friendly) -->
-    <!-- <script defer data-domain="obfuscaite.com" src="https://plausible.io/js/script.js"></script> -->
 </body>
 </html>

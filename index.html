@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>ObfuscAIte - Stop PII from reaching AI providers. Automatically.</title>
+    <meta name="description" content="Infrastructure-level PII protection for AI workflows. Automatic detection & redaction in <50ms. Works with OpenAI, Anthropic, Google, Azure - any LLM. GDPR & HIPAA compliant.">
+    <meta name="keywords" content="PII protection AI agents, LLM GDPR compliance, HIPAA compliant AI, zero trust AI, AI data privacy, AI security middleware, LLM compliance, PII redaction, AI data protection">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="ObfuscAIte - Stop PII from reaching AI providers">
+    <meta property="og:description" content="Infrastructure-level PII protection for AI workflows. Works with any LLM, deploys in minutes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://obfuscaite.com">
+    <meta property="og:image" content="https://obfuscaite.com/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ObfuscAIte - Stop PII from reaching AI providers">
+    <meta name="twitter:description" content="Infrastructure-level PII protection for AI workflows. Works with any LLM, deploys in minutes.">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ObfuscAIte",
+      "applicationCategory": "SecurityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Infrastructure-level PII protection middleware for AI workflows",
+      "operatingSystem": "All",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1"
+      }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+
+    <style>
+        /* CSS Variables for Light/Dark Mode */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #0a0e27;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --accent-primary: #2563eb;
+            --accent-secondary: #3b82f6;
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --accent-danger: #ef4444;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #1a1f3a;
+            --bg-tertiary: #2a2f4a;
+            --text-primary: #f8f9fa;
+            --text-secondary: #cbd5e0;
+            --text-muted: #a0aec0;
+            --border-color: #2d3748;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dark-mode-toggle {
+            background: var(--bg-tertiary);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 100px;
+            background: var(--bg-primary);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .subheadline {
+            font-size: 22px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .trust-signal {
+            display: inline-block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        /* Email Form */
+        .email-form {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-field {
+            margin-bottom: 16px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: border-color 0.2s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-field small {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-1px);
+        }
+
+        .cta-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        section.alternate {
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* Problem Section */
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .pain-point {
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-danger);
+            border-left-width: 6px;
+            padding: 32px;
+            border-radius: 8px;
+        }
+
+        .pain-point-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .pain-point h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .pain-point p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Solution Section */
+        .solution-visual {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .diagram {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .flow-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .flow {
+            text-align: center;
+        }
+
+        .flow h4 {
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .flow.without h4 {
+            color: var(--accent-danger);
+        }
+
+        .flow.with h4 {
+            color: var(--accent-success);
+        }
+
+        .flow-item {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flow-arrow {
+            font-size: 24px;
+            margin: 8px 0;
+            color: var(--text-muted);
+        }
+
+        .flow-item.protected {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: var(--accent-success);
+            font-weight: 600;
+        }
+
+        .flow-item.exposed {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: var(--accent-danger);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .feature {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 8px;
+            border-top: 4px solid var(--accent-primary);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            color: var(--text-secondary);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            font-size: 15px;
+        }
+
+        .check {
+            color: var(--accent-success);
+            font-weight: 600;
+        }
+
+        .cross {
+            color: var(--accent-danger);
+            font-weight: 600;
+        }
+
+        .highlight-col {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        /* Social Proof */
+        .credentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .credential {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .credential-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .credential h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .credential p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .final-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            margin-bottom: 48px;
+        }
+
+        .final-cta .email-form {
+            background: white;
+        }
+
+        .final-cta .email-form * {
+            color: var(--text-primary);
+        }
+
+        .demo-link {
+            margin-top: 24px;
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: 2px solid white;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .demo-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .subheadline {
+                font-size: 18px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .email-form {
+                padding: 24px;
+            }
+
+            .flow-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .hero {
+                padding: 40px 0 60px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">🔒 ObfuscAIte</div>
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Stop PII from reaching AI providers. Automatically.</h1>
+                <p class="subheadline">ObfuscAIte catches sensitive data before it leaves your infrastructure — works with any LLM, deploys in minutes.</p>
+
+                <div class="trust-signal">
+                    From the team behind HackAPrompt #21 | 8 disclosed vulnerabilities
+                </div>
+
+                <form class="email-form" id="heroForm">
+                    <div class="form-field">
+                        <label for="email">Work Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="you@company.com">
+                    </div>
+                    <div class="form-field">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required placeholder="Your Company">
+                    </div>
+                    <div class="form-field">
+                        <label for="concern">Biggest AI compliance concern? <small>(optional)</small></label>
+                        <textarea id="concern" name="concern" placeholder="e.g., GDPR violations, customer PII exposure..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Get Early Access</button>
+                    <div class="form-message" id="heroFormMessage"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem alternate">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your AI agents are leaking sensitive data right now</h2>
+            </div>
+            <div class="pain-points">
+                <div class="pain-point">
+                    <div class="pain-point-icon">⚖️</div>
+                    <h3>Every prompt with customer data violates GDPR/HIPAA</h3>
+                    <p>Names, emails, SSNs, health records — they're all being sent to third-party LLM providers. Each request creates compliance exposure and regulatory risk.</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-point-icon">👁️</div>
+                    <h3>LLM providers see everything — they promise not to train on it, but it's already exposed</h3>
+                    <p>Once PII reaches OpenAI, Anthropic, or Google, you've lost control. Trust isn't a security model. Prevention is.</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-point-icon">🚫</div>
+                    <h3>Your compliance team has no visibility or control</h3>
+                    <p>Developers integrate LLMs directly. Security teams discover it months later during audits. By then, millions of records have already leaked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="section-header">
+                <h2>Infrastructure-level PII protection for AI workflows</h2>
+                <p>Stop data leaks before they happen — at the network layer</p>
+            </div>
+
+            <div class="solution-visual">
+                <div class="diagram">
+                    <div class="flow-comparison">
+                        <div class="flow without">
+                            <h4>❌ Without ObfuscAIte</h4>
+                            <div class="flow-item">User Input: "Process order for john.doe@email.com, SSN 123-45-6789"</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-item exposed">🚨 Sent to OpenAI/Anthropic with PII exposed</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-item">GDPR violation | Audit fail | Data breach</div>
+                        </div>
+                        <div class="flow with">
+                            <h4>✅ With ObfuscAIte</h4>
+                            <div class="flow-item">User Input: "Process order for john.doe@email.com, SSN 123-45-6789"</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-item protected">🔒 ObfuscAIte redacts PII in &lt;50ms</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-item">Sent to LLM: "Process order for [EMAIL_1], SSN [SSN_1]"</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-item">Response restored with original data</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Automatic detection & redaction in &lt;50ms</h3>
+                    <p>Real-time PII detection with enterprise-grade accuracy. No latency impact on your AI workflows.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Works with OpenAI, Anthropic, Google, Azure, AWS — any LLM</h3>
+                    <p>Provider-agnostic architecture. Switch LLMs without changing security infrastructure.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Zero-config MCP middleware — no code changes needed</h3>
+                    <p>Deploy as infrastructure. Impossible to bypass. No SDK integration or code refactoring required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiation Section -->
+    <section class="differentiation alternate">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why ObfuscAIte vs. alternatives?</h2>
+                <p>The only solution that prevents PII exposure at the infrastructure level</p>
+            </div>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th class="highlight-col">ObfuscAIte</th>
+                            <th>Nightfall AI</th>
+                            <th>Lakera Guard</th>
+                            <th>Cloud Providers</th>
+                            <th>Open Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Real-time prevention</strong></td>
+                            <td class="highlight-col check">✓ Stops before exposure</td>
+                            <td class="cross">✗ Monitors after</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provider agnostic</strong></td>
+                            <td class="highlight-col check">✓ Any LLM</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗ Single vendor lock-in</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zero integration effort</strong></td>
+                            <td class="highlight-col check">✓ Drop-in middleware</td>
+                            <td class="cross">✗ Requires SDK</td>
+                            <td class="cross">✗ Requires SDK</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗ Manual setup</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Can't be bypassed</strong></td>
+                            <td class="highlight-col check">✓ Network-level</td>
+                            <td class="cross">✗ Application-level</td>
+                            <td class="cross">✗ Application-level</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗ Depends on impl.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Latency</strong></td>
+                            <td class="highlight-col check">✓ &lt;50ms</td>
+                            <td>~100ms</td>
+                            <td>~200ms</td>
+                            <td>Varies</td>
+                            <td>Varies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Compliance focus</strong></td>
+                            <td class="highlight-col check">✓ GDPR/HIPAA first</td>
+                            <td class="check">✓</td>
+                            <td>Security first</td>
+                            <td class="check">✓</td>
+                            <td>DIY</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built by AI security experts</h2>
+                <p>Proven track record in AI safety and vulnerability research</p>
+            </div>
+            <div class="credentials">
+                <div class="credential">
+                    <div class="credential-icon">🏆</div>
+                    <h4>HackAPrompt #21 Globally</h4>
+                    <p>Ranked among top AI security researchers in global prompt injection competition</p>
+                </div>
+                <div class="credential">
+                    <div class="credential-icon">🔍</div>
+                    <h4>8 Disclosed Vulnerabilities</h4>
+                    <p>Responsible disclosure of critical security flaws through bug bounty programs</p>
+                </div>
+                <div class="credential">
+                    <div class="credential-icon">🏗️</div>
+                    <h4>Production RAG Experience</h4>
+                    <p>Built and scaled AI systems handling millions of sensitive queries in production</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Get compliant before your next audit</h2>
+            <p>Join CTOs and CISOs at regulated companies protecting their AI workflows</p>
+
+            <form class="email-form" id="ctaForm">
+                <div class="form-field">
+                    <label for="email2">Work Email *</label>
+                    <input type="email" id="email2" name="email" required placeholder="you@company.com">
+                </div>
+                <div class="form-field">
+                    <label for="company2">Company *</label>
+                    <input type="text" id="company2" name="company" required placeholder="Your Company">
+                </div>
+                <div class="form-field">
+                    <label for="concern2">Biggest AI compliance concern? <small>(optional)</small></label>
+                    <textarea id="concern2" name="concern" placeholder="e.g., GDPR violations, customer PII exposure..."></textarea>
+                </div>
+                <button type="submit" class="cta-button">Get Early Access</button>
+                <div class="form-message" id="ctaFormMessage"></div>
+            </form>
+
+            <a href="https://calendly.com/obfuscaite/demo" class="demo-link" target="_blank" rel="noopener">
+                📅 Book a demo for January 2025
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ObfuscAIte. Infrastructure-level PII protection for AI workflows.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Initialize theme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            darkModeToggle.textContent = '☀️';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            darkModeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Form Handling
+        function handleFormSubmit(formId, messageId) {
+            const form = document.getElementById(formId);
+            const message = document.getElementById(messageId);
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const data = {
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    concern: formData.get('concern') || 'Not specified'
+                };
+
+                // Disable submit button
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                try {
+                    // Replace with your actual endpoint (ConvertKit, Mailchimp, etc.)
+                    // Example for ConvertKit:
+                    // const response = await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
+                    //     method: 'POST',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify({
+                    //         api_key: 'YOUR_API_KEY',
+                    //         email: data.email,
+                    //         fields: {
+                    //             company: data.company,
+                    //             concern: data.concern
+                    //         }
+                    //     })
+                    // });
+
+                    // For demo purposes, store in localStorage
+                    const leads = JSON.parse(localStorage.getItem('obfuscaite_leads') || '[]');
+                    leads.push({ ...data, timestamp: new Date().toISOString() });
+                    localStorage.setItem('obfuscaite_leads', JSON.stringify(leads));
+
+                    // Track with GA4 if available
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'generate_lead', {
+                            currency: 'USD',
+                            value: 0.0
+                        });
+                    }
+
+                    // Show success message
+                    message.textContent = '✓ Success! Check your email for next steps.';
+                    message.className = 'form-message success';
+                    form.reset();
+
+                    // Optional: Redirect after 2 seconds
+                    // setTimeout(() => window.location.href = '/thank-you', 2000);
+
+                } catch (error) {
+                    message.textContent = '✗ Something went wrong. Please try again or email hello@obfuscaite.com';
+                    message.className = 'form-message error';
+                    console.error('Form submission error:', error);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get Early Access';
+                }
+            });
+        }
+
+        // Initialize both forms
+        handleFormSubmit('heroForm', 'heroFormMessage');
+        handleFormSubmit('ctaForm', 'ctaFormMessage');
+
+        // Google Analytics 4 (replace with your measurement ID)
+        // window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
+        // gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Google Analytics 4 - Uncomment and add your ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+
+    <!-- Alternative: Plausible Analytics (privacy-friendly) -->
+    <!-- <script defer data-domain="obfuscaite.com" src="https://plausible.io/js/script.js"></script> -->
+</body>
+</html>

@@ -145,9 +145,9 @@ obfuscAIte landing page/
 | Dark mode | ✅ Working |
 | Mobile responsive | ✅ Working |
 | SEO meta tags | ✅ Working |
-| Live on internet | ❌ **Deploy next** |
-| Custom domain | ❌ After deploy |
-| Google indexing | ❌ After deploy + submit to Search Console |
+| Live on internet | ✅ Working |
+| Custom domain | ✅ Working |
+| Google indexing | ✅ Working |
 
 ---
 
@@ -156,9 +156,9 @@ obfuscAIte landing page/
 1. ✅ Forms working
 2. ✅ Analytics working
 3. ✅ Calendly working
-4. ⏳ **Deploy to Netlify** (5 min)
+4. ✅ **Deploy to Netlify** (5 min)
 5. ⏳ Share the link
-6. ⏳ Submit to Google Search Console
+6. ✅ Submit to Google Search Console
 7. ⏳ Start promoting
 
 ---
@@ -166,14 +166,12 @@ obfuscAIte landing page/
 ## 📈 After Launch Checklist
 
 **Day 1:**
-- [ ] Deploy to Netlify
 - [ ] Share on LinkedIn
 - [ ] Share on Twitter
 - [ ] Post in 3 relevant communities
 - [ ] Email 10 people in your network
 
 **Week 1:**
-- [ ] Submit to Google Search Console
 - [ ] Set up `generate_lead` as conversion in GA4
 - [ ] Monitor form submissions daily
 - [ ] Respond to leads within 24 hours
@@ -191,10 +189,6 @@ obfuscAIte landing page/
 ---
 
 ## 🆘 Need Help?
-
-**Deploying?**
-- Netlify is easiest - just drag & drop this folder
-- See SETUP-GUIDE.md for detailed steps
 
 **SEO/Marketing?**
 - Focus on active promotion first (social, communities)
@@ -237,5 +231,3 @@ obfuscAIte landing page/
    - Include your story, tech stack, problem you're solving
 
 ---
-
-**Ready to deploy?** It takes 5 minutes on Netlify. Want me to walk you through it? 🚀

@@ -645,25 +645,10 @@
                     Approval-aware MCP security middleware for local-first agent workflows.
                 </div>
 
-                <form class="email-form" id="heroForm">
-                    <div class="form-field">
-                        <label for="email">Work Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="you@company.com">
-                    </div>
-                    <div class="form-field">
-                        <label for="company">Company *</label>
-                        <input type="text" id="company" name="company" required placeholder="Your Company">
-                    </div>
-                    <div class="form-field">
-                        <label for="concern">Biggest agent security concern? <small>(optional)</small></label>
-                        <textarea id="concern" name="concern" placeholder="e.g., shell access, risky file writes, approval workflow needs..."></textarea>
-                    </div>
-                    <button type="submit" class="cta-button">Get Early Access</button>
-                    <div style="margin-top: 16px;">
-                        <a href="https://github.com/Claw-Agents/mcp-safety-gate" target="_blank" rel="noopener" style="color: white; font-weight: 600; text-decoration: underline;">View on GitHub</a>
-                    </div>
-                    <div class="form-message" id="heroFormMessage"></div>
-                </form>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 24px;">
+                    <a href="https://github.com/Claw-Agents/mcp-safety-gate" class="cta-button" target="_blank" rel="noopener">View on GitHub</a>
+                    <a href="https://github.com/Claw-Agents/mcp-safety-gate#readme" target="_blank" rel="noopener" style="color: white; font-weight: 600; text-decoration: underline;">Read the Docs</a>
+                </div>
             </div>
         </div>
     </section>
@@ -854,26 +839,13 @@
             <h2>Add a reviewable control layer to your agent tools</h2>
             <p>If you want shell and file access without blind trust, Safety Gate is the layer in the middle.</p>
 
-            <form class="email-form" id="ctaForm">
-                <div class="form-field">
-                    <label for="email2">Work Email *</label>
-                    <input type="email" id="email2" name="email" required placeholder="you@company.com">
-                </div>
-                <div class="form-field">
-                    <label for="company2">Company *</label>
-                    <input type="text" id="company2" name="company" required placeholder="Your Company">
-                </div>
-                <div class="form-field">
-                    <label for="concern2">Biggest agent control concern? <small>(optional)</small></label>
-                    <textarea id="concern2" name="concern" placeholder="e.g., risky tool execution, auditability, approval flow..."></textarea>
-                </div>
-                <button type="submit" class="cta-button">Get Early Access</button>
-                <div class="form-message" id="ctaFormMessage"></div>
-            </form>
-
-            <a href="https://www.zcal.co/ormcg" class="demo-link" target="_blank" rel="noopener">
-                📅 Book a strategy chat
-            </a>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 24px;">
+                <a href="https://github.com/Claw-Agents/mcp-safety-gate" class="cta-button" target="_blank" rel="noopener">View on GitHub</a>
+                <a href="https://github.com/Claw-Agents/mcp-safety-gate#readme" target="_blank" rel="noopener" style="color: inherit; font-weight: 600; text-decoration: underline;">Read the Docs</a>
+                <a href="https://www.zcal.co/ormcg" class="demo-link" target="_blank" rel="noopener">
+                    📅 Book a strategy chat
+                </a>
+            </div>
         </div>
     </section>
 
@@ -905,72 +877,7 @@
             darkModeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         });
 
-        // Form Handling
-        function handleFormSubmit(formId, messageId) {
-            const form = document.getElementById(formId);
-            const message = document.getElementById(messageId);
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const formData = new FormData(form);
-                const data = {
-                    email: formData.get('email'),
-                    company: formData.get('company'),
-                    concern: formData.get('concern') || 'Not specified'
-                };
-
-                // Disable submit button
-                const submitBtn = form.querySelector('button[type="submit"]');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Submitting...';
-
-                try {
-                    // Replace with your actual endpoint (ConvertKit, Mailchimp, etc.)
-                    // FormSpree:
-                    const response = await fetch('https://formspree.io/f/xgvgyvpy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: formData ? JSON.stringify(data) : null
-                    });
-
-                    if (!response.ok) throw new Error('Submission failed');
-
-                    // For demo purposes, store in localStorage
-                    const leads = JSON.parse(localStorage.getItem('safety_gate_leads') || '[]');
-                    leads.push({ ...data, timestamp: new Date().toISOString() });
-                    localStorage.setItem('safety_gate_leads', JSON.stringify(leads));
-
-                    // Track with GA4 if available
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'generate_lead', {
-                            currency: 'USD',
-                            value: 0.0
-                        });
-                    }
-
-                    // Show success message
-                    message.textContent = '✓ Success! Check your email for next steps.';
-                    message.className = 'form-message success';
-                    form.reset();
-
-                    // Optional: Redirect after 2 seconds
-                    // setTimeout(() => window.location.href = '/thank-you', 2000);
-
-                } catch (error) {
-                    message.textContent = '✗ Something went wrong. Please try again or email hello@your-domain.com';
-                    message.className = 'form-message error';
-                    console.error('Form submission error:', error);
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Get Early Access';
-                }
-            });
-        }
-
-        // Initialize both forms
-        handleFormSubmit('heroForm', 'heroFormMessage');
-        handleFormSubmit('ctaForm', 'ctaFormMessage');
+        // Lead-capture forms removed in favor of open-source CTAs.
 
     </script>
 </body>

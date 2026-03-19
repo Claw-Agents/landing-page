@@ -45,7 +45,7 @@ landing-page/
 ## Notes
 
 - The page is a static site.
-- Current copy is written around **Safety Gate**, not the older ObfuscAIte positioning.
+- Current copy is written around **Safety Gate**, not the older product positioning.
 - The hero, problem/solution framing, differentiation section, and CTA were updated to reflect the current product story.
 
 ## Next likely improvements

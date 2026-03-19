@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Store email in localStorage for demo purposes
             // In production, this would be an API call to your backend
-            const waitlist = JSON.parse(localStorage.getItem('obfuscaite_waitlist') || '[]');
+            const waitlist = JSON.parse(localStorage.getItem('safety_gate_waitlist') || '[]');
 
             if (waitlist.includes(email)) {
                 showMessage('This email is already on the waitlist!', 'error');
             } else {
                 waitlist.push(email);
-                localStorage.setItem('obfuscaite_waitlist', JSON.stringify(waitlist));
+                localStorage.setItem('safety_gate_waitlist', JSON.stringify(waitlist));
 
                 // Clear form
                 emailInput.value = '';

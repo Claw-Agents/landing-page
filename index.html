@@ -14,35 +14,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>ObfuscAIte - Stop PII from reaching AI providers. Automatically.</title>
-    <meta name="description" content="Infrastructure-level PII protection for AI workflows. Automatic detection & redaction in <50ms. Works with OpenAI, Anthropic, Google, Azure - any LLM. GDPR & HIPAA compliant.">
-    <meta name="keywords" content="PII protection AI agents, LLM GDPR compliance, HIPAA compliant AI, zero trust AI, AI data privacy, AI security middleware, LLM compliance, PII redaction, AI data protection">
+    <title>Safety Gate - Policy, approvals, and auditability for MCP tool execution</title>
+    <meta name="description" content="Safety Gate adds policy checks, approval workflows, and auditability to MCP tool execution for local AI agents. Built for OpenClaw and local-first agent workflows.">
+    <meta name="keywords" content="MCP security middleware, OpenClaw security, AI agent approvals, agent tool execution policy, MCP approval workflow, local AI agent security, shell and file guardrails, auditability for agents">
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="ObfuscAIte - Stop PII from reaching AI providers">
-    <meta property="og:description" content="Infrastructure-level PII protection for AI workflows. Works with any LLM, deploys in minutes.">
+    <meta property="og:title" content="Safety Gate - Policy, approvals, and auditability for MCP tool execution">
+    <meta property="og:description" content="Approval-aware MCP security middleware for local AI agents. Add policy, review gates, and auditability to shell and file tool execution.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://obfuscaite.com">
     <meta property="og:image" content="https://obfuscaite.com/og-image.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ObfuscAIte - Stop PII from reaching AI providers">
-    <meta name="twitter:description" content="Infrastructure-level PII protection for AI workflows. Works with any LLM, deploys in minutes.">
+    <meta name="twitter:title" content="Safety Gate - Policy, approvals, and auditability for MCP tool execution">
+    <meta name="twitter:description" content="Approval-aware MCP security middleware for local AI agents. Add policy, review gates, and auditability to shell and file tool execution.">
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "ObfuscAIte",
+      "name": "Safety Gate",
       "applicationCategory": "SecurityApplication",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "Infrastructure-level PII protection middleware for AI workflows",
+      "description": "Approval-aware MCP security middleware for local AI agents",
       "operatingSystem": "All",
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -625,7 +625,7 @@
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
-                <div class="logo">🔒 ObfuscAIte</div>
+                <div class="logo">🛡️ Safety Gate</div>
                 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
             </div>
         </div>
@@ -635,11 +635,12 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Stop PII from reaching AI providers. Automatically.</h1>
-                <p class="subheadline">ObfuscAIte catches sensitive data before it leaves your infrastructure — works with any LLM, deploys in minutes.</p>
+                <h1>Keep your agents useful without making risky actions invisible.</h1>
+                <p class="subheadline">Safety Gate adds policy, approvals, and auditability to MCP tool execution for local AI agents — especially shell and file access in OpenClaw-style workflows.</p>
 
                 <div class="trust-signal">
-                    Developed by a globally ranked AI Security Researcher with contributions to the latest Constitutional Classifier techniques.
+                    Approval-aware MCP security middleware for local-first agent workflows.
+                </div>
 
                 <form class="email-form" id="heroForm">
                     <div class="form-field">
@@ -651,8 +652,8 @@
                         <input type="text" id="company" name="company" required placeholder="Your Company">
                     </div>
                     <div class="form-field">
-                        <label for="concern">Biggest AI compliance concern? <small>(optional)</small></label>
-                        <textarea id="concern" name="concern" placeholder="e.g., GDPR violations, customer PII exposure..."></textarea>
+                        <label for="concern">Biggest agent security concern? <small>(optional)</small></label>
+                        <textarea id="concern" name="concern" placeholder="e.g., shell access, risky file writes, approval workflow needs..."></textarea>
                     </div>
                     <button type="submit" class="cta-button">Get Early Access</button>
                     <div class="form-message" id="heroFormMessage"></div>
@@ -665,23 +666,23 @@
     <section class="problem alternate">
         <div class="container">
             <div class="section-header">
-                <h2>Your AI agents are leaking sensitive data right now</h2>
+                <h2>Your agents are either too powerful, too restricted, or too opaque</h2>
             </div>
             <div class="pain-points">
                 <div class="pain-point">
                     <div class="pain-point-icon">⚖️</div>
-                    <h3>Every prompt with customer data violates GDPR/HIPAA</h3>
-                    <p>Names, emails, SSNs, health records — they're all being sent to third-party LLM providers. Each request creates compliance exposure and regulatory risk.</p>
+                    <h3>Direct shell and file access make risky actions hard to review</h3>
+                    <p>Once an agent can run commands or modify files directly, important changes can happen faster than humans can follow them.</p>
                 </div>
                 <div class="pain-point">
                     <div class="pain-point-icon">👁️</div>
-                    <h3>LLM providers see everything — they promise not to train on it, but it's already exposed</h3>
-                    <p>Once PII reaches OpenAI, Anthropic, or Google, you've lost control. Trust isn't a security model. Prevention is.</p>
+                    <h3>"Just trust the agent" is not a security model</h3>
+                    <p>You need a middle layer that can allow safe actions, pause risky ones, and make the decision path reviewable.</p>
                 </div>
                 <div class="pain-point">
                     <div class="pain-point-icon">🚫</div>
-                    <h3>Your compliance team has no visibility or control</h3>
-                    <p>Developers integrate LLMs directly. Security teams discover it months later during audits. By then, millions of records have already leaked.</p>
+                    <h3>Approvals and audits are usually bolted on too late</h3>
+                    <p>By the time someone asks who approved a risky action or whether it can be replayed, the system often has no clean answer.</p>
                 </div>
             </div>
         </div>
@@ -691,30 +692,30 @@
     <section class="solution">
         <div class="container">
             <div class="section-header">
-                <h2>Infrastructure-level PII protection for AI workflows</h2>
-                <p>Stop data leaks before they happen — at the network layer</p>
+                <h2>A reviewable control layer for MCP tool execution</h2>
+                <p>Safety Gate sits between local AI agents and risky shell/file actions, adding policy checks, approvals, and auditability.</p>
             </div>
 
             <div class="solution-visual">
                 <div class="diagram">
                     <div class="flow-comparison">
                         <div class="flow without">
-                            <h4>❌ Without ObfuscAIte</h4>
-                            <div class="flow-item">User Input: "Process order for john.doe@email.com, SSN 123-45-6789"</div>
+                            <h4>❌ Without Safety Gate</h4>
+                            <div class="flow-item">Agent requests: write package.json + run shell command</div>
                             <div class="flow-arrow">↓</div>
-                            <div class="flow-item exposed">🚨 Sent to OpenAI/Anthropic with PII exposed</div>
+                            <div class="flow-item exposed">🚨 Tool executes with little review or auditability</div>
                             <div class="flow-arrow">↓</div>
-                            <div class="flow-item">GDPR violation | Audit fail | Data breach</div>
+                            <div class="flow-item">Unclear accountability | Risky changes | Opaque execution</div>
                         </div>
                         <div class="flow with">
-                            <h4>✅ With ObfuscAIte</h4>
-                            <div class="flow-item">User Input: "Process order for john.doe@email.com, SSN 123-45-6789"</div>
+                            <h4>✅ With Safety Gate</h4>
+                            <div class="flow-item">Agent requests: write package.json + run shell command</div>
                             <div class="flow-arrow">↓</div>
-                            <div class="flow-item protected">🔒 ObfuscAIte redacts PII in &lt;50ms</div>
+                            <div class="flow-item protected">🛡️ Safety Gate evaluates policy and may require review</div>
                             <div class="flow-arrow">↓</div>
-                            <div class="flow-item">Sent to LLM: "Process order for [EMAIL_1], SSN [SSN_1]"</div>
+                            <div class="flow-item">Human inspects the request, unified diff, and approval details</div>
                             <div class="flow-arrow">↓</div>
-                            <div class="flow-item">Response restored with original data</div>
+                            <div class="flow-item">Execution is attributable, authenticated, expirable, and auditable</div>
                         </div>
                     </div>
                 </div>
@@ -723,18 +724,18 @@
             <div class="features-grid">
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
-                    <h3>Automatic detection & redaction in &lt;50ms</h3>
-                    <p>Real-time PII detection with enterprise-grade accuracy. No latency impact on your AI workflows.</p>
+                    <h3>Policy-enforced shell and file execution</h3>
+                    <p>Allow low-risk actions automatically, deny unsafe patterns, and route higher-risk operations into review.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🌐</div>
-                    <h3>Works with OpenAI, Anthropic, Google, Azure, AWS — any LLM</h3>
-                    <p>Provider-agnostic architecture. Switch LLMs without changing security infrastructure.</p>
+                    <h3>Built for MCP and OpenClaw-style local agent workflows</h3>
+                    <p>Designed for agent environments where local shell and file tools are powerful, but too important to leave invisible.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🔌</div>
-                    <h3>Zero-config MCP middleware — no code changes needed</h3>
-                    <p>Deploy as infrastructure. Impossible to bypass. No SDK integration or code refactoring required.</p>
+                    <h3>Approvals, expiry, replay protection, and audit trail</h3>
+                    <p>Know who approved, who executed, what changed, and whether a stale approval could be reused later.</p>
                 </div>
             </div>
         </div>
@@ -744,69 +745,69 @@
     <section class="differentiation alternate">
         <div class="container">
             <div class="section-header">
-                <h2>Why ObfuscAIte vs. alternatives?</h2>
-                <p>The only solution that prevents PII exposure at the infrastructure level</p>
+                <h2>Why Safety Gate vs. adjacent alternatives?</h2>
+                <p>Most tools optimize for orchestration or isolation. Safety Gate focuses on reviewable MCP tool execution.</p>
             </div>
             <div class="comparison-table">
                 <table>
                     <thead>
                         <tr>
                             <th>Capability</th>
-                            <th class="highlight-col">ObfuscAIte</th>
-                            <th>Nightfall AI</th>
-                            <th>Lakera Guard</th>
-                            <th>Cloud Providers</th>
-                            <th>Open Source</th>
+                            <th class="highlight-col">Safety Gate</th>
+                            <th>Orchestrators</th>
+                            <th>Sandbox Runtimes</th>
+                            <th>Cloud Guardrails</th>
+                            <th>DIY Scripts</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Real-time prevention</strong></td>
-                            <td class="highlight-col check">✓ Stops before exposure</td>
-                            <td class="cross">✗ Monitors after</td>
-                            <td class="check">✓</td>
-                            <td class="check">✓</td>
-                            <td class="check">✓</td>
+                            <td><strong>Policy-enforced tool execution</strong></td>
+                            <td class="highlight-col check">✓ Core product</td>
+                            <td class="cross">✗ Usually not the focus</td>
+                            <td class="cross">✗ Usually lower-level isolation</td>
+                            <td class="cross">✗ Often provider-specific</td>
+                            <td class="cross">✗ Hand-rolled</td>
                         </tr>
                         <tr>
-                            <td><strong>Provider agnostic</strong></td>
-                            <td class="highlight-col check">✓ Any LLM</td>
-                            <td class="check">✓</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗ Single vendor lock-in</td>
-                            <td class="check">✓</td>
+                            <td><strong>Human review for risky actions</strong></td>
+                            <td class="highlight-col check">✓ Built in</td>
+                            <td class="check">△ Sometimes</td>
+                            <td class="cross">✗ Usually not the focus</td>
+                            <td class="cross">✗ Rarely</td>
+                            <td class="cross">✗ Manual only</td>
                         </tr>
                         <tr>
-                            <td><strong>Zero integration effort</strong></td>
-                            <td class="highlight-col check">✓ Drop-in middleware</td>
-                            <td class="cross">✗ Requires SDK</td>
-                            <td class="cross">✗ Requires SDK</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗ Manual setup</td>
+                            <td><strong>Approval auth + expiry + replay protection</strong></td>
+                            <td class="highlight-col check">✓ Built in</td>
+                            <td class="cross">✗ Not typical</td>
+                            <td class="cross">✗ Not typical</td>
+                            <td class="cross">✗ Not the main model</td>
+                            <td class="cross">✗ Custom work</td>
                         </tr>
                         <tr>
-                            <td><strong>Can't be bypassed</strong></td>
-                            <td class="highlight-col check">✓ Network-level</td>
-                            <td class="cross">✗ Application-level</td>
-                            <td class="cross">✗ Application-level</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗ Depends on impl.</td>
+                            <td><strong>Unified diff review for file writes</strong></td>
+                            <td class="highlight-col check">✓ Built in</td>
+                            <td class="cross">✗ Not typical</td>
+                            <td class="cross">✗ Not typical</td>
+                            <td class="cross">✗ No</td>
+                            <td class="cross">✗ DIY</td>
                         </tr>
                         <tr>
-                            <td><strong>Latency</strong></td>
-                            <td class="highlight-col check">✓ &lt;50ms</td>
-                            <td>~100ms</td>
-                            <td>~200ms</td>
+                            <td><strong>OpenClaw / MCP-friendly</strong></td>
+                            <td class="highlight-col check">✓ Yes</td>
                             <td>Varies</td>
                             <td>Varies</td>
+                            <td>Varies</td>
+                            <td class="check">✓ If you build it</td>
                         </tr>
                         <tr>
-                            <td><strong>Compliance focus</strong></td>
-                            <td class="highlight-col check">✓ GDPR/HIPAA first</td>
-                            <td class="check">✓</td>
-                            <td>Security first</td>
-                            <td class="check">✓</td>
-                            <td>DIY</td>
+                            <td><strong>Positioning</strong></td>
+                            <td class="highlight-col check">Approval-aware MCP middleware</td>
+                            <td>Workflow coordination</td>
+                            <td>Execution isolation</td>
+                            <td>Provider-layer guardrails</td>
+                            <td>Custom glue</td>
                         </tr>
                     </tbody>
                 </table>
@@ -844,8 +845,8 @@
     <!-- Final CTA Section -->
     <section class="final-cta">
         <div class="container">
-            <h2>Get compliant before your next audit</h2>
-            <p>Join CTOs and CISOs at regulated companies protecting their AI workflows</p>
+            <h2>Add a reviewable control layer to your agent tools</h2>
+            <p>If you want shell and file access without blind trust, Safety Gate is the layer in the middle.</p>
 
             <form class="email-form" id="ctaForm">
                 <div class="form-field">
@@ -857,8 +858,8 @@
                     <input type="text" id="company2" name="company" required placeholder="Your Company">
                 </div>
                 <div class="form-field">
-                    <label for="concern2">Biggest AI compliance concern? <small>(optional)</small></label>
-                    <textarea id="concern2" name="concern" placeholder="e.g., GDPR violations, customer PII exposure..."></textarea>
+                    <label for="concern2">Biggest agent control concern? <small>(optional)</small></label>
+                    <textarea id="concern2" name="concern" placeholder="e.g., risky tool execution, auditability, approval flow..."></textarea>
                 </div>
                 <button type="submit" class="cta-button">Get Early Access</button>
                 <div class="form-message" id="ctaFormMessage"></div>
@@ -873,7 +874,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 ObfuscAIte. Infrastructure-level PII protection for AI workflows.</p>
+            <p>&copy; 2025 Safety Gate. Approval-aware MCP security middleware for local AI agents.</p>
         </div>
     </footer>
 
